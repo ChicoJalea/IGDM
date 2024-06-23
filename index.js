@@ -1,14 +1,14 @@
 import "dotenv/config";
 import express from "express";
+import rmRoute from "./routes/guia.route.js";
+
 
 const app = express();
 
-app.get("/",(req,res)=>{
-    res.json({message:  "hola mundo"});
-});
+app.use("/api/dependencias", rmRoute);
 
 const PORT = process.env.PORT || 4372;
 
 app.listen(PORT, () =>{
-    console.log("server conectado en" + PORT);
+    console.log("server atento en puerto" + PORT);
 });
