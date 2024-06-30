@@ -1,4 +1,4 @@
-import { fhirModel } from "../models/BlogModel.js";
+/* import { fhirModel } from "../models/BlogModel.js";
 
 const getAll = async (_,res) => {
     try {
@@ -11,4 +11,4 @@ const getAll = async (_,res) => {
 
 export const fhirController = {
     getAll,
-};
+}; */

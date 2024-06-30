@@ -1,14 +1,18 @@
-import Card, { CardBody } from "./components/Card";
-import List from "./components/List";
+// src/App.tsx
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import TableData from "./components/TableData";
+import TableList from "./components/TableList";
 
-function App() {
-  const list = ["Goku", "Ash", "ChicoJalea"];
+const App: React.FC = () => {
   return (
-    <Card>
-      <CardBody title="Hola Mundito" text="chao mundito" />
-      <List data={list} />
-    </Card>
+    <Router>
+      <Routes>
+        <Route path="/" element={<TableList />} />
+        <Route path="/tables/:tableName" element={<TableData />} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
