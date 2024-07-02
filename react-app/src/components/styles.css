@@ -1,39 +1,39 @@
-/* styles.css */
-.container {
+.table-list-container {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://cdn2.hubspot.net/hubfs/2898104/Images/Blog/20170703_IIBHealthcare_WhatisFHIR/iStock-487536910-899467-edited.jpg"); /* Gradiente con imagen de fondo */
+  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir el contenedor */
+  background-position: center; /* Centra la imagen en el contenedor */
+  height: 100vh; /* Ajusta la altura al 100% del viewport */
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 20px;
 }
 
-.table-wrapper {
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: #f9f9f9;
+.h1-box {
+  background-color: rgba(
+    239,
+    237,
+    232,
+    0.8
+  ); /* Fondo blanco semitransparente */
+  padding: 15px; /* Espaciado interno */
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(26, 33, 1, 0.749); /* Sombra */
+  display: inline-block; /* Ajusta el tamaño al contenido */
+  justify-content: center;
 }
 
-table {
-  border-collapse: collapse;
-  width: 100%;
+.card {
+  background-color: rgb(251, 251, 251);
+  padding: 15px; /* Espaciado interno */
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(26, 33, 0, 0);
 }
 
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
-
-th {
-  background-color: #4caf50;
-  color: white;
-}
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-tr:hover {
-  background-color: #ddd;
+.custom-image {
+  max-width: 50%;
+  height: auto;
 }

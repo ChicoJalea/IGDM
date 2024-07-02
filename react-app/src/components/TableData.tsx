@@ -3,9 +3,11 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { nombreColumnasMapeadas, nombreTablasMapeadas } from "./Mappings";
+import { linksCaidos } from "./badLinks";
 
 interface TableDataProps {
   [key: string]: any;
+  isLinkDown?: boolean; // Atributo opcional para marcar enlaces caídos
 }
 
 const TableData: React.FC = () => {
@@ -20,7 +22,18 @@ const TableData: React.FC = () => {
         const response = await axios.get(
           `http://localhost:4372/api/tables/${tableName}`
         );
-        setData(response.data);
+        // Aquí puedes agregar manualmente el atributo isLinkDown a las filas correspondientes
+        const updatedData = response.data.map((item: TableDataProps) => {
+          if (linksCaidos.includes(item.url_version)) {
+            item.isLinkDown = true;
+          }
+          if (linksCaidos.includes(item.dep_core)) {
+            item.isLinkDown = true;
+          }
+          // Agrega más condiciones según sea necesario
+          return item;
+        });
+        setData(updatedData);
       } catch (err) {
         setError("Error fetching data");
       } finally {
@@ -57,31 +70,88 @@ const TableData: React.FC = () => {
           <table className="table table-bordered table-hover">
             <thead className="thead-dark">
               <tr>
-                {Object.keys(data[0]).map((key) => (
-                  <th key={key}>
-                    {columnMapping[key as keyof typeof columnMapping] || key}
-                  </th>
-                ))}
+                {Object.keys(data[0])
+                  .filter(
+                    (key) =>
+                      key !== "url" &&
+                      key !== "url_version" &&
+                      key !== "url_dep" &&
+                      key !== "dep_fhir" &&
+                      key !== "dep_core" &&
+                      key !== "isLinkDown" // Filtrar isLinkDown
+                  )
+                  .map((key) => (
+                    <th key={key}>
+                      {columnMapping[key as keyof typeof columnMapping] || key}
+                    </th>
+                  ))}
               </tr>
             </thead>
             <tbody>
               {data.map((item, index) => (
                 <tr key={index}>
-                  {Object.values(item).map((value, i) => (
-                    <td key={i}>
-                      {typeof value === "string" && value.startsWith("http") ? (
-                        <a
-                          href={value}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {value}
-                        </a>
-                      ) : (
-                        (value as React.ReactNode)
-                      )}
-                    </td>
-                  ))}
+                  {Object.entries(item)
+                    .filter(
+                      ([key]) =>
+                        key !== "url" &&
+                        key !== "url_version" &&
+                        key !== "url_dep" &&
+                        key !== "dep_fhir" &&
+                        key !== "dep_core" &&
+                        key !== "isLinkDown" // Filtrar isLinkDown
+                    )
+                    .map(([key, value], i) => (
+                      <td key={i}>
+                        {key === "recurso" && item.url ? (
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={item.isLinkDown ? "text-danger" : ""}
+                          >
+                            {value}
+                          </a>
+                        ) : key === "id_computableName" && item.url_version ? (
+                          <a
+                            href={item.url_version}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={item.isLinkDown ? "text-danger" : ""}
+                          >
+                            {value}
+                          </a>
+                        ) : key === "dependencia" && item.url_dep ? (
+                          <a
+                            href={item.url_dep}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={item.isLinkDown ? "danger" : ""}
+                          >
+                            {value}
+                          </a>
+                        ) : key === "dependencia" && item.dep_fhir ? (
+                          <a
+                            href={item.dep_fhir}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={item.isLinkDown ? "text-danger" : ""}
+                          >
+                            {value}
+                          </a>
+                        ) : key === "dependencia" && item.dep_core ? (
+                          <a
+                            href={item.dep_core}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={item.isLinkDown ? "text-danger" : ""}
+                          >
+                            {value}
+                          </a>
+                        ) : (
+                          value
+                        )}
+                      </td>
+                    ))}
                 </tr>
               ))}
             </tbody>
