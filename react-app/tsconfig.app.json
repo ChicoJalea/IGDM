@@ -2,26 +2,33 @@
   "compilerOptions": {
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2020",
+    "target": "ES2020", // Asegura compatibilidad con características modernas de JS
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"], // Incluye las bibliotecas necesarias para el desarrollo web moderno
+    "module": "ESNext", // Utiliza el sistema de módulos de ESNext
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "bundler", // Para compatibilidad con herramientas de empaquetado modernas como Vite
     "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
+    "resolveJsonModule": true, // Permite importar archivos JSON
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "react-jsx", // Configuración para JSX en proyectos React
 
     /* Linting */
-    "strict": true,
+    "strict": true, // Habilita todas las verificaciones estrictas
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Optional: Add baseUrl and paths if needed */
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@utils/*": ["utils/*"]
+    }
   },
   "include": ["src"]
 }

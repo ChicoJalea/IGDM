@@ -81,7 +81,7 @@ const TableList = () => {
                   HL7 Chile
                 </a>
                 <Link
-                  to="/diagram"
+                  to="/mapa"
                   className="list-group-item list-group-item-action border rounded mb-2 shadow-sm"
                 >
                   Ver Diagrama de Tablas
