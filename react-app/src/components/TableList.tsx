@@ -49,11 +49,18 @@ const TableList = () => {
         ></img>
         <div className="container">
           <div className="card-body">
-            <h5 className="card-title">Guías de Implementación</h5>
+            <h5 className="card-title">
+              Visualizador de Guías de Implementación
+            </h5>
             <p className="card-text">
-              Todas las guías de implementación habilitadas se encuentran de
-              color verde, siendo las de color rojo las que aún se encuentran en
-              desarrollo
+              Esta es una lista que muestra el entorno de desarrollo de las
+              guías de implementación a nivel nacional, tanto de las que ya
+              están habilitadas (color verde), como las que aún no se encuentran
+              disponibles (color rojo). Cada guía disponible presenta en su
+              contenido, los recursos que utiliza para construir sus artefactos
+              perfiles y sus dependencias en que se basa. Además, se deja a
+              disposición de un mapa de G.I para entender la jerarquía y las
+              relaciones entre estas.
             </p>
           </div>
           <div className="row justify-content-center">
@@ -69,7 +76,10 @@ const TableList = () => {
                           : "list-group-item-danger"
                       }`}
                     >
-                      <Link to={`/tables/${table}`} className="stretched-link">
+                      <Link
+                        to={`/tables/${table}`}
+                        className="stretched-link letra"
+                      >
                         {nombreTablasMapeadas[table] || table}
                       </Link>
                     </li>
@@ -77,14 +87,17 @@ const TableList = () => {
                 </ul>
               </div>
               <div className="card-body">
-                <a href="https://hl7chile.cl/" className="card-link">
+                <a
+                  href="https://hl7chile.cl/"
+                  className="list-group-item list-group-item-action border rounded mb-2 shadow-sm letra"
+                >
                   HL7 Chile
                 </a>
                 <Link
                   to="/mapa"
                   className="list-group-item list-group-item-action border rounded mb-2 shadow-sm"
                 >
-                  Ver Diagrama de Tablas
+                  Mapa de Relaciones
                 </Link>
               </div>
             </div>

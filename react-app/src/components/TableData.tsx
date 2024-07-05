@@ -56,107 +56,113 @@ const TableData: React.FC = () => {
     {};
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">
-        Contenido de{" "}
-        {nombreTablasMapeadas[
-          tableName as keyof typeof nombreColumnasMapeadas
-        ] || tableName}
-      </h1>
-      <div className="table-responsive">
-        {data.length === 0 ? (
-          <p>No data found.</p>
-        ) : (
-          <table className="table table-bordered table-hover">
-            <thead className="thead-dark">
-              <tr>
-                {Object.keys(data[0])
-                  .filter(
-                    (key) =>
-                      key !== "url" &&
-                      key !== "url_version" &&
-                      key !== "url_dep" &&
-                      key !== "dep_fhir" &&
-                      key !== "dep_core" &&
-                      key !== "isLinkDown" // Filtrar isLinkDown
-                  )
-                  .map((key) => (
-                    <th key={key}>
-                      {columnMapping[key as keyof typeof columnMapping] || key}
-                    </th>
+    <div className="table-data-container">
+      <div className="container mt-5">
+        <h1 className="text-center mb-4">
+          Contenido de{" "}
+          {nombreTablasMapeadas[
+            tableName as keyof typeof nombreColumnasMapeadas
+          ] || tableName}
+        </h1>
+        <div className="table-responsive fixed-header-table">
+          {data.length === 0 ? (
+            <p>No data found.</p>
+          ) : (
+            <div className="overflow">
+              <table className="table table-bordered table-hover">
+                <thead className="thead-dark">
+                  <tr>
+                    {Object.keys(data[0])
+                      .filter(
+                        (key) =>
+                          key !== "url" &&
+                          key !== "url_version" &&
+                          key !== "url_dep" &&
+                          key !== "dep_fhir" &&
+                          key !== "dep_core" &&
+                          key !== "isLinkDown" // Filtrar isLinkDown
+                      )
+                      .map((key) => (
+                        <th key={key}>
+                          {columnMapping[key as keyof typeof columnMapping] ||
+                            key}
+                        </th>
+                      ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.map((item, index) => (
+                    <tr key={index}>
+                      {Object.entries(item)
+                        .filter(
+                          ([key]) =>
+                            key !== "url" &&
+                            key !== "url_version" &&
+                            key !== "url_dep" &&
+                            key !== "dep_fhir" &&
+                            key !== "dep_core" &&
+                            key !== "isLinkDown" // Filtrar isLinkDown
+                        )
+                        .map(([key, value], i) => (
+                          <td key={i}>
+                            {key === "recurso" && item.url ? (
+                              <a
+                                href={item.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={item.isLinkDown ? "text-danger" : ""}
+                              >
+                                {value}
+                              </a>
+                            ) : key === "id_computableName" &&
+                              item.url_version ? (
+                              <a
+                                href={item.url_version}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={item.isLinkDown ? "text-danger" : ""}
+                              >
+                                {value}
+                              </a>
+                            ) : key === "dependencia" && item.url_dep ? (
+                              <a
+                                href={item.url_dep}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={item.isLinkDown ? "danger" : ""}
+                              >
+                                {value}
+                              </a>
+                            ) : key === "dependencia" && item.dep_fhir ? (
+                              <a
+                                href={item.dep_fhir}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={item.isLinkDown ? "text-danger" : ""}
+                              >
+                                {value}
+                              </a>
+                            ) : key === "dependencia" && item.dep_core ? (
+                              <a
+                                href={item.dep_core}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={item.isLinkDown ? "text-danger" : ""}
+                              >
+                                {value}
+                              </a>
+                            ) : (
+                              value
+                            )}
+                          </td>
+                        ))}
+                    </tr>
                   ))}
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((item, index) => (
-                <tr key={index}>
-                  {Object.entries(item)
-                    .filter(
-                      ([key]) =>
-                        key !== "url" &&
-                        key !== "url_version" &&
-                        key !== "url_dep" &&
-                        key !== "dep_fhir" &&
-                        key !== "dep_core" &&
-                        key !== "isLinkDown" // Filtrar isLinkDown
-                    )
-                    .map(([key, value], i) => (
-                      <td key={i}>
-                        {key === "recurso" && item.url ? (
-                          <a
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={item.isLinkDown ? "text-danger" : ""}
-                          >
-                            {value}
-                          </a>
-                        ) : key === "id_computableName" && item.url_version ? (
-                          <a
-                            href={item.url_version}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={item.isLinkDown ? "text-danger" : ""}
-                          >
-                            {value}
-                          </a>
-                        ) : key === "dependencia" && item.url_dep ? (
-                          <a
-                            href={item.url_dep}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={item.isLinkDown ? "danger" : ""}
-                          >
-                            {value}
-                          </a>
-                        ) : key === "dependencia" && item.dep_fhir ? (
-                          <a
-                            href={item.dep_fhir}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={item.isLinkDown ? "text-danger" : ""}
-                          >
-                            {value}
-                          </a>
-                        ) : key === "dependencia" && item.dep_core ? (
-                          <a
-                            href={item.dep_core}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={item.isLinkDown ? "text-danger" : ""}
-                          >
-                            {value}
-                          </a>
-                        ) : (
-                          value
-                        )}
-                      </td>
-                    ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
