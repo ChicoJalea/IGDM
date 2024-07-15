@@ -96,8 +96,8 @@ export const initialEdges = [
     },
   },
   {
-    id: "ips->ipscl",
-    source: "ips",
+    id: "core->ipscl",
+    source: "core",
     target: "ipscl",
     markerEnd: {
       type: MarkerType.ArrowClosed,
@@ -110,10 +110,11 @@ export const initialEdges = [
       stroke: "#18A33A",
     },
   },
+
   {
-    id: "ipscl->core",
-    source: "ipscl",
-    target: "core",
+    id: "ips->ipscl",
+    source: "ips",
+    target: "ipscl",
     markerEnd: {
       type: MarkerType.ArrowClosed,
       width: 10,

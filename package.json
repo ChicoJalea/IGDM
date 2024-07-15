@@ -5,8 +5,10 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run dev --prefix react-app"
   },
   "keywords": [],
   "author": "ChicoJalea",
@@ -14,6 +16,7 @@
   "description": "",
   "devDependencies": {
     "@types/cors": "^2.8.17",
+    "concurrently": "^8.2.2",
     "nodemon": "^3.1.4"
   },
   "dependencies": {

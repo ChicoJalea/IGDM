@@ -1,0 +1,43 @@
+version: "3"
+services:
+  backend:
+    build: .
+    ports:
+      - "4372:4372"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://ChicoJalea:7878sql78@db:5432/dependencias_entre_guias
+
+  frontend:
+    build: ./react-app
+    ports:
+      - "5000:5173" # Vite usa el puerto 5173 por defecto
+    environment:
+      - VITE_BACKEND_URL=http://backend:4372
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:16.3
+    environment:
+      POSTGRES_USER: ChicoJalea
+      POSTGRES_PASSWORD: 7878sql78
+      POSTGRES_DB: dependencias_entre_guias
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: marco.vargas@alumnos.uv.cl
+      PGADMIN_DEFAULT_PASSWORD: 7878sql78
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+volumes:
+  db_data:

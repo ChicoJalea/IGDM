@@ -100,3 +100,38 @@ export const nombreColumnasMapeadas = {
     url_version: "Link",
   },
 };
+
+export const tableOrder = [
+  "fhir",
+  "ips",
+  "deis",
+  "core",
+  "ipscl",
+  "core_minsal",
+  "hl7_guias",
+  "otras_guias",
+  "receta_medica",
+  "maestro_paciente",
+  "tiempo_espera",
+];
+
+export const tableGroupTitles = [
+  "Primer Grupo de Tablas",
+  "Segundo Grupo de Tablas",
+  "Tercer Grupo de Tablas",
+  "Cuarto Grupo de Tablas",
+];
+
+export const tableDescriptions: Record<string, string> = {
+  fhir: "Descripción de la tabla 1",
+  ips: "Descripción de la tabla 2",
+  deis: "Descripción de la tabla 3",
+  core: "Descripción de la tabla 4",
+  ipscl: "Descripción de la tabla 5",
+  core_minsal: "Descripción de la tabla 6",
+  hl7_guias: "Descripción de la tabla 7",
+  otras_guias: "Descripción de la tabla 8",
+  receta_medica: "Descripción de la tabla 9",
+  maestro_paciente: "Descripción de la tabla 10",
+  tiempo_espera: "Descripción de la tabla 11",
+};
