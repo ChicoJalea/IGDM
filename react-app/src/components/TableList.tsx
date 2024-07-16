@@ -17,7 +17,7 @@ const TableList = () => {
   useEffect(() => {
     const fetchTables = async () => {
       try {
-        const response = await axios.get("http://localhost:4372/api/tables");
+        const response = await axios.get("http://192.168.1.90:4372/api/tables");
         let fetchedTables = response.data;
         fetchedTables = fetchedTables.sort((a: string, b: string) => {
           return tableOrder.indexOf(a) - tableOrder.indexOf(b);
@@ -27,7 +27,7 @@ const TableList = () => {
 
         const dataCheckPromises = response.data.map(async (table: any) => {
           const res = await axios.get(
-            `http://localhost:4372/api/tables/${table}`
+            `http://192.168.1.90:4372/api/tables/${table}`
           );
           return { table, hasData: res.data.length > 0 };
         });
