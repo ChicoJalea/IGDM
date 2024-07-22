@@ -17,7 +17,7 @@ const TableList = () => {
   useEffect(() => {
     const fetchTables = async () => {
       try {
-        const response = await axios.get("http://192.168.1.90:4372/api/tables");
+        const response = await axios.get("http://localhost:4372/api/tables");
         let fetchedTables = response.data;
         fetchedTables = fetchedTables.sort((a: string, b: string) => {
           return tableOrder.indexOf(a) - tableOrder.indexOf(b);
@@ -27,7 +27,7 @@ const TableList = () => {
 
         const dataCheckPromises = response.data.map(async (table: any) => {
           const res = await axios.get(
-            `http://192.168.1.90:4372/api/tables/${table}`
+            `http://localhost:4372/api/tables/${table}`
           );
           return { table, hasData: res.data.length > 0 };
         });
@@ -59,7 +59,7 @@ const TableList = () => {
     });
   };
 
-  const tableGroups = divideTablesIntoGroups(tables, [3, 1, 4, 3]);
+  const tableGroups = divideTablesIntoGroups(tables, [2, 2, 2, 5]);
 
   return (
     <div className="table-list-container">
@@ -68,6 +68,10 @@ const TableList = () => {
           src="https://hl7chile.cl/wp-content/uploads/2023/04/hl7chile-1.png"
           className="img-fluid w-50 custom-image"
           alt="HL7 Chile"
+        ></img>
+        <img
+          src="https://uv.cl/images/descargas-corporativas/uv_logo_alta_rgba_azul-2023.png"
+          className="logoUV"
         ></img>
         <div className="container">
           <div className="card-body">

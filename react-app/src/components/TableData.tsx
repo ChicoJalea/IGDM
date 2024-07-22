@@ -20,7 +20,7 @@ const TableData: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.1.90:4372/api/tables/${tableName}`
+          `http://localhost:4372/api/tables/${tableName}`
         );
         // Aquí puedes agregar manualmente el atributo isLinkDown a las filas correspondientes
         const updatedData = response.data.map((item: TableDataProps) => {

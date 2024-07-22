@@ -116,22 +116,24 @@ export const tableOrder = [
 ];
 
 export const tableGroupTitles = [
-  "Primer Grupo de Tablas",
-  "Segundo Grupo de Tablas",
-  "Tercer Grupo de Tablas",
-  "Cuarto Grupo de Tablas",
+  "Estandar e Internacionales",
+  "Core Nacional",
+  "Core Locales",
+  "Guías de Implementación",
 ];
 
 export const tableDescriptions: Record<string, string> = {
-  fhir: "Descripción de la tabla 1",
-  ips: "Descripción de la tabla 2",
-  deis: "Descripción de la tabla 3",
-  core: "Descripción de la tabla 4",
-  ipscl: "Descripción de la tabla 5",
+  fhir: "Estandar internacional FHIR(Recursos de Interoperabilidad Sanitaria Rápida)",
+  ips: "Instituciones Prestadores de Servicios de Salud",
+  deis: "Guía de Estandares de Información de Salud",
+  core: "Guía central de alineamiento de guías de implementación",
+  ipscl: "Instituciones Prestadores de Servicios de Salud en Chile",
   core_minsal: "Descripción de la tabla 6",
-  hl7_guias: "Descripción de la tabla 7",
-  otras_guias: "Descripción de la tabla 8",
-  receta_medica: "Descripción de la tabla 9",
-  maestro_paciente: "Descripción de la tabla 10",
-  tiempo_espera: "Descripción de la tabla 11",
+  hl7_guias: "Guías creadas por la organización HL7",
+  otras_guias: "Guías creadas por cualquier otra institución",
+  receta_medica: "Sistema Nacional de receta electronica",
+  maestro_paciente:
+    "Sistema de unificación y gestión de identidad única de pacientes en salud nacional",
+  tiempo_espera:
+    "Gestión de consultas nuevas de especialidad desde APS al nivel secundario vía Tiempos de Espera.",
 };
