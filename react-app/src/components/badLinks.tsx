@@ -1,3 +1,9 @@
+//este archivo guarda las urls caídas de las guías que deberían estar publicadas, pero que sin embargo
+//no se encuentran en el servidor.
+// Lo que hará esto, será marcar en rojo los links correspondientes en la interfaz visual a modo de advertencia.
+// Esto se hace para que el usuario pueda ver que hay contenido que no se encuentra disponible en el.
+// De todos modos, al abrirlos manda a una página caída.
+
 export const linksCaidos = [
   "https://hl7chile.cl/fhir/ig/CoreCL/1.7.0/StructureDefinition-CoreOrganizacionCl.html",
   "https://hl7chile.cl/fhir/ig/clcore/1.8.9/StructureDefinition-EncounterCL.html",

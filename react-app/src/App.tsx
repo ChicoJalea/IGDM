@@ -1,4 +1,4 @@
-// src/App.tsx
+// se asocia una ruta para cada componente creado
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import TableData from "./components/TableData";

@@ -1,3 +1,5 @@
+/* lo que hace este archivo es practicamente posicionar a los nodos, asignarle una id, un nombre y darle
+un estilo. Luego se exporta para ser usado en el componente de Mapa */
 import { Background } from "reactflow";
 import { PositionLoggerNode } from "./PositionLoggerNode";
 
@@ -10,11 +12,10 @@ export const initialNodes = [
     style: { backgroundColor: "#18A33A" },
   },
   {
-    id: "deis",
-    type: "position-logger",
-    position: { x: 500, y: 150 },
-    data: { label: "DEIS" },
-    style: { backgroundColor: "#EFB412" },
+    id: "eis",
+    position: { x: -100, y: 150 },
+    data: { label: "EIS" },
+    style: { backgroundColor: "#B32D1C" },
   },
   {
     id: "ips",

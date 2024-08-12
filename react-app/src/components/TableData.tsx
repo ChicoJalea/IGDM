@@ -1,21 +1,28 @@
+/* este componente sitúa al contenido de cada tabla, por lo que variará según el id o nombre pasado
+a la ruta que conecta con la API. Además de esto personaliza el contenido a mostrar, combinando dos columnas;
+asigna el link de la página de la guía al computable name */
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "axios"; //permite hace solicitudes HTTP desde un navegador o un entorno de Node.js
 import { useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { nombreColumnasMapeadas, nombreTablasMapeadas } from "./Mappings";
-import { linksCaidos } from "./badLinks";
+import { nombreColumnasMapeadas, nombreTablasMapeadas } from "./Mappings"; //nombres mapeados de las columnas y guías
+import { linksCaidos } from "./badLinks"; //links caídos para denotarlos en color rojo
 
 interface TableDataProps {
+  //Es una interfaz que define el tipo de los datos que se utilizarán en el componente.
   [key: string]: any;
   isLinkDown?: boolean; // Atributo opcional para marcar enlaces caídos
 }
-
+/* Utiliza useParams para obtener el nombre de la tabla desde la URL, 
+lo que permite que el contenido de la tabla varíe dinámicamente.
+Almacena los datos obtenidos de la API */
 const TableData: React.FC = () => {
   const { tableName } = useParams<{ tableName: string }>();
   const [data, setData] = useState<TableDataProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  /* useEffect carga los datos de la API cuando el componente se monta y cada vez que tableName cambia.
+Lo demás es para identificar errores al cargar. */
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,11 +57,11 @@ const TableData: React.FC = () => {
   if (error) {
     return <div className="text-center mt-5">{error}</div>;
   }
-
+  /* Se utiliza un mapeo de columnas específico para cada tabla, obtenido del archivo Mappings. */
   const columnMapping =
     nombreColumnasMapeadas[tableName as keyof typeof nombreColumnasMapeadas] ||
     {};
-
+  /* el componente devuelve una estructura HTML */
   return (
     <div className="table-data-container">
       <div className="container mt-5">

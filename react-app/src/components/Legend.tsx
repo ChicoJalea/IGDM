@@ -1,8 +1,9 @@
+// este archivo construye la legenda en el mapa de relaciones
+
 const Legend = () => {
   const legendItems = [
     { color: "#18A33A", label: "Habilitado" },
     { color: "#B32D1C", label: "No Disponible" },
-    { color: "FAFAFA", label: "No Habilitado" },
   ];
   return (
     <div

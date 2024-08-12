@@ -1,9 +1,11 @@
+// este archivo guarda los mapeos y listas que se utilizan en ciertas partes.
+
 export const nombreTablasMapeadas = {
   receta_medica: "Receta Médica",
   maestro_paciente: "Maestro Paciente",
   tiempo_espera: "Tiempos de Espera",
   fhir: "FHIR",
-  deis: "DEIS",
+  deis: "EIS",
   core: "CoreCL",
   core_minsal: "Core Minsal",
   hl7_guias: "Guías HL7",
@@ -124,11 +126,12 @@ export const tableGroupTitles = [
 
 export const tableDescriptions: Record<string, string> = {
   fhir: "Estandar internacional FHIR(Recursos de Interoperabilidad Sanitaria Rápida)",
-  ips: "Instituciones Prestadores de Servicios de Salud",
+  ips: "Guía de implementación del resumen para pacientes internacionales",
   deis: "Guía de Estandares de Información de Salud",
-  core: "Guía central de alineamiento de guías de implementación",
-  ipscl: "Instituciones Prestadores de Servicios de Salud en Chile",
-  core_minsal: "Descripción de la tabla 6",
+  core: "Guía núcleo de guías de implementación",
+  ipscl:
+    "Guía de implementación del resumen para pacientes internacionales versión Chile",
+  core_minsal: "Guía núcleo de guías de implementación versión Minsal",
   hl7_guias: "Guías creadas por la organización HL7",
   otras_guias: "Guías creadas por cualquier otra institución",
   receta_medica: "Sistema Nacional de receta electronica",

@@ -1,19 +1,33 @@
+/* este componente es de cara lo primero que se muestra en la aplicación, muestra una breve explicación,
+un par de botones para navegar hacia la página de HL7 Chile y otra para navegar al componente de Mapa. Además
+presenta la lista de todas las tablas (las guías de implementación) las cuales se pueden navegar hacia su
+contenido clickeando en ellas. Esta lista clasifica las tablas en recuadros según su nivel jerárquico y presenta
+una breve explicación de cada guía*/
 import { useEffect, useState } from "react";
+/* hooks para realizar efectos secundarios manejar el estado local
+ */
 import { Link } from "react-router-dom";
 import axios from "axios";
 import {
+  //importa los mapeos y listas para trabajar el orden, descripciones, títulos de las tablas
   nombreTablasMapeadas,
   tableOrder,
   tableGroupTitles,
   tableDescriptions,
 } from "./Mappings";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css"; //importa estilos
 import "./styles.css";
-
+/* almacena la lista de nombres de tablas y almacena si cada tabla tiene datos o no, donde la clave 
+es el nombre de la tabla y el valor es un booleano */
 const TableList = () => {
   const [tables, setTables] = useState<string[]>([]);
   const [hasData, setHasData] = useState<{ [key: string]: boolean }>({});
-
+  /* Ejecuta la función fetchTables cuando el componente se monta. */
+  /* hace una solicitud HTTP para obtener la lista de tablas desde la API creada.
+Ordena las tablas de acuerdo a "tableOrder", actualiza el estado de tables con la lista obtenida,
+donde para cada tabla, realiza otra solicitud para verificar si contiene datos y almacena esa información 
+en hasData. Promise.all asegura que todas las solicitudes para verificar los datos se completen
+ antes de actualizar hasData */
   useEffect(() => {
     const fetchTables = async () => {
       try {
@@ -49,7 +63,9 @@ const TableList = () => {
 
     fetchTables();
   }, []);
-
+  /* la siguiente funcion permite dividir las tablas en grupos de acuerdo con los tamaños especificados en
+groupSizes, por ejemplo, si este es [2,2,2,5], agrupará las tablas en cuatro grupos, 
+con los primeros tres grupos conteniendo dos tablas cada uno y el último grupo cinco tablas */
   const divideTablesIntoGroups = (tables: string[], groupSizes: number[]) => {
     let startIndex = 0;
     return groupSizes.map((size) => {
@@ -60,7 +76,10 @@ const TableList = () => {
   };
 
   const tableGroups = divideTablesIntoGroups(tables, [2, 2, 2, 5]);
-
+  /* lo siguiente es la renderización del componente con algunos estilos importados de boostrap y otros
+hechos en un archivo CSS propio, además de añadir texto en algunas secciones, como algunos títulos,
+botones y la explicación que se muestra en pantalla. Por último también se añadió el logo de HL7 Chile y 
+el de la Universidad de Valparaíso*/
   return (
     <div className="table-list-container">
       <div className="card" style={{ width: "700px" }}>

@@ -1,3 +1,4 @@
+/* este archivo se encarga de conectar los nodos y darles un estilo */
 import { MarkerType, type Edge, type EdgeTypes } from "reactflow";
 
 export const initialEdges = [
@@ -11,6 +12,23 @@ export const initialEdges = [
       height: 10,
       color: "#18A33A",
     },
+
+    style: {
+      strokeWidth: 5,
+      stroke: "#18A33A",
+    },
+  },
+  {
+    id: "fhir->eis",
+    source: "fhir",
+    target: "eis",
+    markerEnd: {
+      type: MarkerType.ArrowClosed,
+      width: 10,
+      height: 10,
+      color: "#18A33A",
+    },
+
     style: {
       strokeWidth: 5,
       stroke: "#18A33A",
@@ -81,8 +99,8 @@ export const initialEdges = [
     },
   },
   {
-    id: "deis->core",
-    source: "deis",
+    id: "eis->core",
+    source: "eis",
     target: "core",
     markerEnd: {
       type: MarkerType.ArrowClosed,
